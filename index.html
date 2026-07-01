@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI勉強会 第1回 | AIに任せて作る、最初の一歩</title>
+    <meta name="description" content="AI勉強会 第1回 解説回。Claude Code を触り、プランモードでモックアップを立ち上げる体験を最優先。" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-bar" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="hero-eyebrow">AI勉強会 第1回 / 解説回</p>
+        <h1>AIに任せて作る、<br />最初の一歩</h1>
+        <p class="hero-lead">まずは触る。理屈は後から。<br />1時間で「自分のPCにアプリが立ち上がった」を体験する。</p>
+        <dl class="hero-meta">
+          <div>
+            <dt>日程</dt>
+            <dd>2026年7月上旬</dd>
+          </div>
+          <div>
+            <dt>登壇</dt>
+            <dd>丸さん / 永安</dd>
+          </div>
+          <div>
+            <dt>所要</dt>
+            <dd>約60分</dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" id="goal">
+        <div class="section-head">
+          <span class="section-index">01</span>
+          <h2>今日のゴール</h2>
+        </div>
+        <p class="lead">
+          「自分のPCで、AIが書いたアプリが動く」まで持っていく。<br />
+          きれいさや完成度は今日は問わない。<strong>動いた事実</strong>だけを持ち帰る。
+        </p>
+        <ul class="bullet-list">
+          <li>Claude Code を初めて触る</li>
+          <li>プランモードで、いきなり作らせず「計画」から始める作法を体験する</li>
+          <li>次回に持ち込む宿題（小さいモックアップ1個）のイメージを掴む</li>
+        </ul>
+      </section>
+
+      <section class="section" id="flow">
+        <div class="section-head">
+          <span class="section-index">02</span>
+          <h2>全体の進め方</h2>
+        </div>
+        <p class="lead">2回セットの勉強会。今日は「解説」、2週間後は「もくもく会」。</p>
+        <ol class="phase-list">
+          <li>
+            <span class="phase-tag">今日</span>
+            <h3>第1回 / 解説回（60分）</h3>
+            <p>危機感の共有と、やればできそうという感触作り。</p>
+          </li>
+          <li>
+            <span class="phase-tag">〜2週間</span>
+            <h3>宿題</h3>
+            <p>何でもいい。自分のPCで簡単なモックアップを1個作ってくる。</p>
+          </li>
+          <li>
+            <span class="phase-tag">2週間後</span>
+            <h3>第2回 / もくもく会</h3>
+            <p>宿題を持ち寄って、詰まりを解消しながら一段深い技術を学ぶ。</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section" id="timetable">
+        <div class="section-head">
+          <span class="section-index">03</span>
+          <h2>本日のタイムテーブル</h2>
+        </div>
+        <table class="timetable">
+          <thead>
+            <tr>
+              <th>担当</th>
+              <th>時間</th>
+              <th>内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>丸さん</td>
+              <td>〜30分</td>
+              <td>「トラック巡り」プロジェクトの共有。Claude でモック → Gemini で要求定義を整理した実例。</td>
+            </tr>
+            <tr>
+              <td>永安</td>
+              <td>〜30分</td>
+              <td>Claude Code の実演（Twitterっぽいアプリ）。プランモードの話。フォルダ構造とAIっぽさ回避の触り。</td>
+            </tr>
+            <tr>
+              <td>永安</td>
+              <td>最後</td>
+              <td>宿題を出す（何でもいいので小さいモックアップを1つ）。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section subtle" id="maru">
+        <div class="section-head">
+          <span class="section-index">04</span>
+          <h2>丸さんパート</h2>
+        </div>
+        <p class="lead">「トラック巡り」プロジェクトの共有。</p>
+        <ul class="bullet-list">
+          <li>Claude でモックアップを作り、要件をすり合わせた実例</li>
+          <li>Gemini で要求定義を整理した工夫</li>
+        </ul>
+        <p class="note">※本セクションの詳細は丸さん側で共有</p>
+      </section>
+
+      <section class="section section-lead" id="nagayasu">
+        <p class="section-lead-eyebrow">§ 永安パート</p>
+        <h2 class="section-lead-title">Claude Code で作る</h2>
+        <p class="section-lead-sub">
+          伝えたいことは大きく2つ。<br />
+          <strong>プランモードを使う</strong>／<strong>フォルダ構造で一貫性を保つ</strong>。<br />
+          あとは、AIっぽさを消す小ワザを少しだけ。
+        </p>
+      </section>
+
+      <section class="section" id="what-is-cc">
+        <div class="section-head">
+          <span class="section-index">05</span>
+          <h2>Claude Code とは？</h2>
+        </div>
+        <p class="lead">ブラウザのチャットとの違いは、この2つだけ押さえればOK。</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>フォルダにアクセスできる</h3>
+            <p>ファイルを直接読んで、直接書ける。「このプロジェクトの続きを作って」が成立する。</p>
+          </article>
+          <article class="card">
+            <h3>ターミナルから動かす</h3>
+            <p>自分のPC上で動く。npm install も git commit も、Claude Code がやってくれる。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="demo">
+        <div class="section-head">
+          <span class="section-index">06</span>
+          <h2>デモ: Twitterっぽいアプリを作る</h2>
+        </div>
+        <p class="lead">流れはたった4ステップ。今日は目の前で1周やります。</p>
+        <ol class="step-list">
+          <li><span>1</span><div><h3>プラン</h3><p>いきなり書かず、まず計画を出させる</p></div></li>
+          <li><span>2</span><div><h3>確認</h3><p>計画を読んで、要らないものを削る</p></div></li>
+          <li><span>3</span><div><h3>実装</h3><p>Approve して、書かせる</p></div></li>
+          <li><span>4</span><div><h3>動かす</h3><p>ブラウザで開いて、動きを見る</p></div></li>
+        </ol>
+
+        <div class="prompt-block">
+          <div class="prompt-head">
+            <span class="prompt-label">プロンプト 01 / デモ開始</span>
+            <button class="copy-btn" type="button" data-copy-target="p01">コピー</button>
+          </div>
+          <pre id="p01"><code>Twitterっぽいシンプルなアプリを作って。
+投稿・タイムライン表示・いいねだけでOK。
+いきなり作らずに、まずプランモードで計画を見せて。</code></pre>
+        </div>
+
+        <div class="prompt-block">
+          <div class="prompt-head">
+            <span class="prompt-label">プロンプト 02 / プランへの追加要望</span>
+            <button class="copy-btn" type="button" data-copy-target="p02">コピー</button>
+          </div>
+          <pre id="p02"><code>ログイン機能はなし、データはブラウザ内のみで保存、
+1ファイルのHTMLで動くようにして。</code></pre>
+        </div>
+      </section>
+
+      <section class="section highlight" id="tip-plan">
+        <div class="section-head">
+          <span class="section-index tip">コツ 1</span>
+          <h2>プランモードを使う</h2>
+        </div>
+        <p class="lead">
+          AIは速い。だから <strong>最初に止める</strong>。<br />
+          いきなり書かせず、まず「何を作るつもりか」を言わせる。
+        </p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>やり方</h3>
+            <p><code>Shift + Tab</code> を2回押すとプランモードに入る。緑色のバッジが出る。</p>
+          </article>
+          <article class="card">
+            <h3>作法</h3>
+            <p>返ってきた計画を読む。要らない機能を削る。納得したら Approve、違えば書き直しさせる。</p>
+          </article>
+        </div>
+        <p class="callout">
+          プランを見た瞬間に「あ、これ違うな」と気づけることが多い。<br />
+          書かれてから直すより、書かれる前に直す方が圧倒的に速い。
+        </p>
+      </section>
+
+      <section class="section highlight" id="tip-folder">
+        <div class="section-head">
+          <span class="section-index tip">コツ 2</span>
+          <h2>フォルダ構造で一貫性を保つ</h2>
+        </div>
+        <p class="lead">
+          モックが膨らむと、AIはプロジェクトを読み切れなくなる。<br />
+          <strong>フォルダを整えておくと、AIが迷子にならない</strong>。
+        </p>
+        <p class="note">今日は「そういうものがある」だけ覚えて帰ればOK。詳しくは第2回でやります。</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>最小の型</h3>
+            <pre class="tree"><code>my-app/
+  README.md    ← 何を作っているか
+  src/         ← コード
+  data/        ← データ
+</code></pre>
+          </article>
+          <article class="card">
+            <h3>README には何を書く？</h3>
+            <p>「このアプリは何で、次にAIに何を頼みたいか」を1画面ぶん。次にClaude Codeを開いた自分が読んで思い出せる粒度。</p>
+          </article>
+        </div>
+
+        <div class="prompt-block">
+          <div class="prompt-head">
+            <span class="prompt-label">プロンプト 03 / フォルダ整理</span>
+            <button class="copy-btn" type="button" data-copy-target="p03">コピー</button>
+          </div>
+          <pre id="p03"><code>このプロジェクトのフォルダ構造とREADMEを整えて。
+次回また続きを作るので、引き継げる状態にしてほしい。</code></pre>
+        </div>
+      </section>
+
+      <section class="section highlight" id="tip-ai-look">
+        <div class="section-head">
+          <span class="section-index tip">コツ 3</span>
+          <h2>AIっぽさを消す</h2>
+        </div>
+        <p class="lead">AIに作らせると、出力に独特の「におい」が出る。3つだけ意識すると、ぐっと自然になる。</p>
+        <ol class="anti-ai">
+          <li>
+            <h3>絵文字を使わない</h3>
+            <p>見出しにもボタンにも本文にも入れない。それだけでほぼ「AIっぽさ」は消える。</p>
+          </li>
+          <li>
+            <h3>機能を盛りすぎない</h3>
+            <p>AIは頼まなくても通知・設定・プロフィール…と足してくる。<strong>1画面1目的</strong>を明示的に指示する。</p>
+          </li>
+          <li>
+            <h3>コピーから「革新的・最適化・あなただけの」を消す</h3>
+            <p>ダミーデータの "Sample Project Alpha" や "John Doe" も、そのままだと一発でAI製とバレる。</p>
+          </li>
+        </ol>
+        <p class="note">角丸や色などのUI論には今日は踏み込まない（脱線するので）。1つだけ言うなら「全部を rounded-2xl にしない」くらい。</p>
+      </section>
+
+      <section class="section section-lead" id="homework-lead">
+        <p class="section-lead-eyebrow">§ 宿題</p>
+        <h2 class="section-lead-title">小さいモックアップを1個</h2>
+        <p class="section-lead-sub">
+          次回までに、何でもいいので自分のPCでモックアップを1つ作ってきてください。<br />
+          完成させなくていい。<strong>途中で詰まった状態</strong>で持ってきてくれるのが一番。
+        </p>
+      </section>
+
+      <section class="section" id="homework">
+        <div class="section-head">
+          <span class="section-index">07</span>
+          <h2>宿題の要件</h2>
+        </div>
+        <ul class="bullet-list">
+          <li>Claude Code で作る（プランモードから始める）</li>
+          <li>フォルダを切って、README を1枚置く</li>
+          <li>完成させなくてOK。詰まった箇所を覚えておく</li>
+          <li>テーマは自由。思いつかなければ次のセクションから選んでください</li>
+        </ul>
+      </section>
+
+      <section class="section" id="ideas">
+        <div class="section-head">
+          <span class="section-index">08</span>
+          <h2>迷ったら: 記録系アプリ3案</h2>
+        </div>
+        <p class="lead">「毎日1つ足していく」だけのアプリは、AIとの相性が良くて、詰まりにくい。</p>
+        <div class="grid-3">
+          <article class="card idea">
+            <h3>体重・体調ログ</h3>
+            <p>日付と数値だけ。体重、睡眠時間、気分を数字で残す。グラフは要らない。</p>
+          </article>
+          <article class="card idea">
+            <h3>読書記録</h3>
+            <p>タイトル、読了日、5段階評価、一言メモ。並べて眺めるだけで満足度が高い。</p>
+          </article>
+          <article class="card idea">
+            <h3>飲んだコーヒー記録</h3>
+            <p>豆、淹れ方、店、点数、メモ。趣味の記録は自分だけの資産になる。</p>
+          </article>
+        </div>
+        <p class="callout">
+          この3つ以外でもOK。<br />
+          「自分が本当に欲しかったやつ」を作るのが一番手が動きます。
+        </p>
+      </section>
+
+      <section class="section" id="starter">
+        <div class="section-head">
+          <span class="section-index">09</span>
+          <h2>宿題スタータープロンプト</h2>
+        </div>
+        <p class="lead">「[作りたいもの]」を書き換えて、Claude Code に貼るだけ。</p>
+        <div class="prompt-block">
+          <div class="prompt-head">
+            <span class="prompt-label">プロンプト 04 / 宿題スターター</span>
+            <button class="copy-btn" type="button" data-copy-target="p04">コピー</button>
+          </div>
+          <pre id="p04"><code>[作りたいもの]のモックアップを作って。
+まずプランモードで計画してから進めて。
+絵文字は使わず、機能は盛りすぎないで、画面は1つだけにして。</code></pre>
+        </div>
+      </section>
+
+      <section class="section subtle" id="next">
+        <div class="section-head">
+          <span class="section-index">10</span>
+          <h2>次回予告 / 第2回 もくもく会</h2>
+        </div>
+        <p class="lead">2週間後、みんなの宿題を持ち寄って、詰まりをその場で解消します。</p>
+        <ul class="bullet-list">
+          <li>README や引き継ぎ資料を毎回読ませて、設計思想を崩さない工夫</li>
+          <li>フォルダ構造を綺麗に保つ（肥大化するとAIが読み切れなくなる問題）</li>
+          <li>要求 → 要件定義 → 出力 のサイクルをうまく回す指示の出し方</li>
+          <li>（余裕があれば）Vercel / GitHub Pages でのホスティング、Supabase の紹介</li>
+        </ul>
+      </section>
+
+      <section class="section" id="setup">
+        <div class="section-head">
+          <span class="section-index">11</span>
+          <h2>付録 / 事前準備</h2>
+        </div>
+        <ul class="bullet-list">
+          <li>Claude Code のインストール手順は公式ドキュメントを参照:<br /><a href="https://docs.claude.com/en/docs/claude-code/quickstart" target="_blank" rel="noopener">docs.claude.com/en/docs/claude-code/quickstart</a></li>
+          <li>ターミナル / エディタ（VS Code など）は事前に開ける状態にしておいてください</li>
+          <li>当日聞きたいことがあれば、詰まった時の画面キャプチャを持ってきてもらえると話が早いです</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>AI勉強会 第1回 / Sun*</p>
+    </footer>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
