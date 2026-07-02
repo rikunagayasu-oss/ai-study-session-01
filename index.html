@@ -134,17 +134,22 @@
           <span class="section-index">05</span>
           <h2>Claude Code とは？</h2>
         </div>
-        <p class="lead">ブラウザのチャットとの違いは、この2つだけ押さえればOK。</p>
-        <div class="grid-2">
+        <p class="lead">ブラウザのチャットとは別物の道具です。違いは3つ。</p>
+        <div class="grid-3">
           <article class="card">
-            <h3>フォルダにアクセスできる</h3>
-            <p>ファイルを直接読んで、直接書ける。「このプロジェクトの続きを作って」が成立する。</p>
+            <h3>チャットじゃなく“エージェント”</h3>
+            <p>チャットは話を返すだけ。Claude Code は<strong>ファイルを開く・書き換える・コマンドを実行する</strong>。「作って」でほんとに作る。</p>
           </article>
           <article class="card">
-            <h3>ターミナルから動かす</h3>
-            <p>自分のPC上で動く。npm install も git commit も、Claude Code がやってくれる。</p>
+            <h3>プロジェクトを丸ごと理解する</h3>
+            <p>添付したファイルだけじゃなく、フォルダごと読む。<strong>既存コードの“続き”が書ける</strong>。</p>
+          </article>
+          <article class="card">
+            <h3>入り口は選べる（中身は同じ）</h3>
+            <p>Terminal / VS Code / JetBrains / デスクトップアプリ / ブラウザ / iOSどこから入っても、エンジンは共通。<code>CLAUDE.md</code> や MCP の設定はどの入り口でも効く。</p>
           </article>
         </div>
+        <p class="note">公式: “agentic coding tool that reads your codebase, edits files, runs commands, and integrates with your development tools.” <a href="https://docs.claude.com/en/docs/claude-code/overview" target="_blank" rel="noopener">docs.claude.com/en/docs/claude-code/overview</a></p>
       </section>
 
       <section class="section" id="demo">
@@ -189,7 +194,7 @@
           AIは速い。だから <strong>最初に止める</strong>。<br />
           いきなり書かせず、まず「何を作るつもりか」を言わせる。
         </p>
-        <div class="grid-2">
+        <div class="grid-3">
           <article class="card">
             <h3>やり方</h3>
             <p><code>Shift + Tab</code> を2回押すとプランモードに入る。緑色のバッジが出る。</p>
@@ -198,44 +203,62 @@
             <h3>作法</h3>
             <p>返ってきた計画を読む。要らない機能を削る。納得したら Approve、違えば書き直しさせる。</p>
           </article>
+          <article class="card">
+            <h3>不明点は聞いてくれる</h3>
+            <p>「Twitterっぽいアプリ」だけ渡すと、AI側から「投稿は誰に見える？」「データはどこに保存？」と質問が返ってくる。プロンプトに「不明点は質問して」と書いてもいいけど、プランモードだと<strong>自然にそれをやってくれる</strong>のが大きい。</p>
+          </article>
         </div>
         <p class="callout">
           プランを見た瞬間に「あ、これ違うな」と気づけることが多い。<br />
-          書かれてから直すより、書かれる前に直す方が圧倒的に速い。
+          書かれてから直すより、書かれる前に直す方が圧倒的に速い。<br />
+          聞いてくれるので、こちらから全部指示しなくてよくなる。
         </p>
       </section>
 
       <section class="section highlight" id="tip-folder">
         <div class="section-head">
           <span class="section-index tip">コツ 2</span>
-          <h2>フォルダ構造で一貫性を保つ</h2>
+          <h2>思想とルールを書いておく、フォルダを整える</h2>
         </div>
         <p class="lead">
-          モックが膨らむと、AIはプロジェクトを読み切れなくなる。<br />
-          <strong>フォルダを整えておくと、AIが迷子にならない</strong>。
+          <code>CLAUDE.md</code> は<strong>AIエージェントに“このPJで大切にしていること”を毎回思い出させる仕組み</strong>。<br />
+          フォルダ構造は、それを<strong>「読ませる単位」</strong>として整えておく。
         </p>
-        <p class="note">今日は「そういうものがある」だけ覚えて帰ればOK。詳しくは第2回でやります。</p>
-        <div class="grid-2">
+        <p class="note">Claude Code は起動時にプロジェクト直下の <code>CLAUDE.md</code> を毎回読んでくれる。<code>README.md</code> に書いても効くけど、公式パターンは <code>CLAUDE.md</code>。今日は簡単のため「READMEと同じ役割のもの」と思ってOK。</p>
+        <div class="grid-3">
           <article class="card">
-            <h3>最小の型</h3>
+            <h3>CLAUDE.mdはAIに書かせる</h3>
+            <p>自分で書かなくていい。「このPJの<code>CLAUDE.md</code>を整えて」と頼めばよい。</p>
+          </article>
+          <article class="card">
+            <h3>“思想”と“ルール”を両方書く</h3>
+            <p><strong>思想の例</strong>: 「水族館記録アプリでは競争を煽らない。比較・ランキング機能は提案しない」→ 下流の機能提案でランキングを引っ込めるようになる。</p>
+            <p><strong>ルールの例</strong>: 「返答は日本語」「レコードは削除せず archive フラグを立てる」「ライブラリ追加は先に相談」。</p>
+            <p><strong>思想は判断のガード、ルールは手癖のガード</strong>。両方あると効きが違う。</p>
+          </article>
+          <article class="card">
+            <h3>フォルダは“読ませる単位”</h3>
+            <p>肥大化するとAIが読み切れなくなる。最小構造を早めに切って、迷子にさせない。</p>
             <pre class="tree"><code>my-app/
-  README.md    ← 何を作っているか
+  CLAUDE.md    ← 思想とルール
   src/         ← コード
   data/        ← データ
 </code></pre>
           </article>
-          <article class="card">
-            <h3>README には何を書く？</h3>
-            <p>「このアプリは何で、次にAIに何を頼みたいか」を1画面ぶん。次にClaude Codeを開いた自分が読んで思い出せる粒度。</p>
-          </article>
+        </div>
+
+        <div class="callout column">
+          <strong>コンテキスト = AI エージェントの“短期記憶”</strong><br />
+          会話が進むほど覚えていることが増える。増えすぎると効率が落ち、少なすぎると忘れる。<br />
+          新しいセッションを開始した時に <code>CLAUDE.md</code> を読ませるのは、その短期記憶を<strong>必要な分だけ育てる</strong>動作。フォルダと <code>CLAUDE.md</code> を整えておくと、育てるのも絞るのもどちらもやりやすい。
         </div>
 
         <div class="prompt-block">
           <div class="prompt-head">
-            <span class="prompt-label">プロンプト 03 / フォルダ整理</span>
+            <span class="prompt-label">プロンプト 03 / CLAUDE.md整理</span>
             <button class="copy-btn" type="button" data-copy-target="p03">コピー</button>
           </div>
-          <pre id="p03"><code>このプロジェクトのフォルダ構造とREADMEを整えて。
+          <pre id="p03"><code>このプロジェクトのフォルダ構造とCLAUDE.mdを整えて。
 次回また続きを作るので、引き継げる状態にしてほしい。</code></pre>
         </div>
       </section>
@@ -256,11 +279,17 @@
             <p>AIは頼まなくても通知・設定・プロフィール…と足してくる。<strong>1画面1目的</strong>を明示的に指示する。</p>
           </li>
           <li>
-            <h3>コピーから「革新的・最適化・あなただけの」を消す</h3>
-            <p>ダミーデータの "Sample Project Alpha" や "John Doe" も、そのままだと一発でAI製とバレる。</p>
+            <h3>メインカラーを最初に1色決めておく</h3>
+            <p>色を任せるとカラフルになりがち。「主役は <code>#ff2d16</code>、あとはグレー」と最初に渡すだけで、AIっぽいカラフルさが消える。</p>
           </li>
         </ol>
-        <p class="note">角丸や色などのUI論には今日は踏み込まない（脱線するので）。1つだけ言うなら「全部を rounded-2xl にしない」くらい。</p>
+
+        <div class="callout column">
+          <strong>AIは“見た目”を見ていない</strong><br />
+          HTMLコードとして書いているだけなので、改行や余白の詰まり方は下手。<br />
+          スクショや画面操作を挟むと品質は上がるが、その分コンテキスト・トークンは膨らむ（トレードオフ）。<br /><br />
+          <strong>実例</strong>: この後に出てくる<strong>プロンプト04 / 宿題スターター</strong>の3行、読むと3行目に条件が詰め込まれた感じ、気づきますか？ これがまさに“AIの改行”です（あえて直さず残しています）。
+        </div>
       </section>
 
       <section class="section section-lead" id="homework-lead">

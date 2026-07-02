@@ -249,6 +249,16 @@ main {
   border-radius: 0 8px 8px 0;
 }
 
+.callout.column {
+  background: #fafafa;
+  border-left-color: var(--orange);
+  color: var(--ink);
+}
+
+.callout.column strong {
+  color: var(--dark);
+}
+
 /* ========== Section lead (§ dividers) ========== */
 
 .section-lead {
@@ -448,6 +458,12 @@ main {
   font-size: 15px;
   line-height: 1.75;
   color: var(--ink);
+}
+
+.card p + p,
+.card p + .tree,
+.card .tree + p {
+  margin-top: 12px;
 }
 
 .card.idea h3 {
